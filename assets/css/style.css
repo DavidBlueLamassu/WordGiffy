@@ -4,7 +4,6 @@
     font-weight: bolder;
     height: 50px;
     background-color: darkred !important;
-    background-image: url(/gifcollage.png);
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -35,7 +34,6 @@ background-color: bisque !important;
 
 
 #definition{
-    background-image: url(/gifcollage.png);
     background-position: center;
     background-size: cover;
     background-size: contain;
