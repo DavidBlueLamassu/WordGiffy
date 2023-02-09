@@ -4,6 +4,7 @@
     height: 50px;
     background-color: navy !important;
     background-image: url(/gifcollage.png);
+
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
