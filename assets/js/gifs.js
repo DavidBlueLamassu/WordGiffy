@@ -3,9 +3,8 @@ var giphyAPIKey = "ti79DLvD2w1cHW3G9O89zDknxYwE2tsP";
 gifDisplay();
 
 function gifDisplay() {
-    
-    var gifSearch = userInput;
   
+    var gifSearch = "fool";
     var gifRhyme = "politician";
     
    
