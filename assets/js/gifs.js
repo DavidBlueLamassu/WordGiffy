@@ -1,11 +1,15 @@
 var giphyAPIKey = "ti79DLvD2w1cHW3G9O89zDknxYwE2tsP";
 
-gifDisplay();
-
 function gifDisplay() {
+
+  $("#gif-image").children().remove();
+  $("#gif-text").children().remove();
+  $("#gif-rhyme").children().remove();
+  $("#gif-text-rhyme").children().remove();
   
     var gifSearch = "fool";
-    var rhymeArray = JSON.parse(localStorage.getItem("rhymingWords"));
+    var localRhyme = localStorage.getItem("rhymingWords");
+    var rhymeArray = JSON.parse(localRhyme);
     console.log(rhymeArray);
     var rhymeRandom = Math.floor(Math.random() * rhymeArray.length);
     var gifRhyme = rhymeArray[rhymeRandom].Rhyme;

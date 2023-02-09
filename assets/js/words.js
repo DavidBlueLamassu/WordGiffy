@@ -38,6 +38,7 @@ function getUserInput(){
       });
       //Runs the getRhymingWords function
       getRhymingWords(userInput);
+      
   });
 }
 
@@ -69,6 +70,10 @@ function getRhymingWords(userInput){
       rhymingWords.push(newRhyme);
       //Sets this in local storage
       window.localStorage.setItem('rhymingWords', JSON.stringify(rhymingWords));
+      
     }
-  })  
+    gifDisplay();
+  })
+  
+   
 }
