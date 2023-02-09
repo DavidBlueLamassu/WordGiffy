@@ -47,30 +47,52 @@
                 <div class="input-group">
                     <input class="form-input word-search" type="text" id="search-input" placeholder="Enter word here" />
                     <button type="submit" class="btn search-button" id="search-button">Search</button>
+                    <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
                 </div>
             </div>
         </form>
     </div>
+
+    
+  <!-- Modal from bootstrap-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Thank you</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>Confirm you want to clear search history.. </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Clear</button>
+          
+       </div>
+      </div>
     </div>
   </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Thank you</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Confirm you want to clear search history.. </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Clear</button>
+     
 
+
+    
+<!-- display definition, etc. -->
+    <div class="container" id="search-field-output">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card" id="definition" >
+                    <!-- <img class="card-img-top" src="/gifcollage.png" alt="GIFs-images-background"> -->
+                    <div class="card-body">
+                        <h4 class="card-title" >Definition:</h4>
+                        <div id="definitionHeader"></div>
+                        <h4 class="card-title">Synonyms</h4>
+                        <p class="card-text" id = "synonymHeader"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
