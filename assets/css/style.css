@@ -1,9 +1,8 @@
-
 .jumbotron {
     color: bisque;
     font-weight: bolder;
     height: 50px;
-    background-color: darkred !important;
+    background-color: navy !important;
     background-image: url(/gifcollage.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,8 +13,8 @@
     margin-bottom: 2px !important;
 }
 
-.lead{
-    background-color: darkred;
+.lead {
+    background-color: rgb(57, 57, 238);
     text-align: center;
     color: bisque;
     font-weight: bolder;
@@ -23,10 +22,10 @@
 }
 
 body {
-background-color: bisque !important;
+    background-color: navy !important;
 }
 
-#search-field{
+#search-field {
     /* display: flex; */
     /* position: fixed; */
     align-items: center;
@@ -34,20 +33,47 @@ background-color: bisque !important;
 }
 
 
-#definition{
+#definition {
     background-image: url(/gifcollage.png);
     background-position: center;
     background-size: cover;
     background-size: contain;
-
 }
 
 
 
-footer{
+footer {
     color: bisque;
-    background-color: brown;
+    background-color: rgb(57, 57, 238);
     text-align: center;
     margin-top: 10px;
     /* padding: 10px; */
-  }
+}
+
+h3 {
+    color: white;
+}
+
+h4 {
+    color: white;
+}
+
+#search-button {
+    color: white;
+}
+
+#footnote {
+    color: white;
+}
+
+#gif-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gif-rhyme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
