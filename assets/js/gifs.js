@@ -8,8 +8,8 @@ function gifDisplay() {
     var gifRhyme = "politician";
     
    
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifSearch + "&limit=25&offset=0&rating=pg-13&lang=en";
-    var queryRhymeURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifRhyme + "&limit=25&offset=0&rating=pg-13&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifSearch + "&limit=5&offset=0&rating=pg-13&lang=en";
+    var queryRhymeURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifRhyme + "&limit=5&offset=0&rating=pg-13&lang=en";
     
     
     if (gifSearch === "") {
