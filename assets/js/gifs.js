@@ -5,9 +5,10 @@ gifDisplay();
 function gifDisplay() {
   
     var gifSearch = "fool";
-    var gifRhyme = "politician";
-    
-   
+    var rhymeArray = JSON.parse(localStorage.getItem("rhymingWords"));
+    console.log(rhymeArray);
+    var rhymeRandom = Math.floor(Math.random() * rhymeArray.length);
+    var gifRhyme = rhymeArray[rhymeRandom].Rhyme;
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifSearch + "&limit=5&offset=0&rating=pg-13&lang=en";
     var queryRhymeURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifRhyme + "&limit=5&offset=0&rating=pg-13&lang=en";
     
@@ -51,7 +52,10 @@ function gifDisplay() {
           gifDisplay.css("height", "300px");
           $("#gif-rhyme").append(gifDisplay);
           $("#gif-text-rhyme").text(gifRhyme);
+         
     })
 
-
+  
   }}
+
+  getUserInput();
