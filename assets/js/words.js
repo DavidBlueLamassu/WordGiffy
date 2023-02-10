@@ -1,4 +1,5 @@
 getUserInput();
+clearScreen();
 
 //Function to get the user input
 function getUserInput(){
@@ -74,20 +75,26 @@ function getRhymingWords(userInput){
       window.localStorage.setItem('rhymingWords', JSON.stringify(rhymingWords));
        
     }
+    //Sets up the apended text for the rhyming words
     var rhymeText = $('<p>');
     rhymeText.attr("class", "rhymeText");
+    //Creates an array to store rhymed words in it
     rhymeResultArray = [];
+    //Loops through the first 5 items in rhyming array and pushes it to new array
     for (var j = 0; j < 5; j++){
       rhymeResultArray.push(response.rhymes.all[j]);
     }
     console.log(rhymeResultArray);
+    //Sets the text and appends this array to the html document
     rhymeText.text(rhymeResultArray);
     $('#rhymes').append(rhymeText);
 
+    //Runs gif display function so that it can use the rhyming words
     gifDisplay();
   }) 
 }
 
+//New function with new API call to get example sentances needed
 function getExampleSentance(userInput){
   //Settings for Ajax call
   const settings = {
@@ -100,6 +107,7 @@ function getExampleSentance(userInput){
       "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com"
     }
   };
+  //Appends the first example given in the array
   $.ajax(settings).then(function(response){
     console.log(response);
     var exampleText = $('<p>');
@@ -107,4 +115,22 @@ function getExampleSentance(userInput){
     exampleText.text(response.examples[0]);
     $('#exampleSentance').append(exampleText);
   })  
+}
+
+//Function to clear the screen
+function clearScreen(){
+  //When the clear button is pressed in modal it removes everything needed, removes everything the same as doing a new search
+  $('#clearScreen').on("click", function(event){
+    //Resets the search input field
+    $("#search-input").val("");
+
+    $('#definition').children().remove();
+    $('#synonyms').children().remove();
+    $('#rhymes').children().remove();
+    $('#exampleSentance').children().remove();
+    $("#gif-image").children().remove();
+    $("#gif-text").children().remove();
+    $("#gif-rhyme").children().remove();
+    $("#gif-text-rhyme").children().remove();
+  })
 }
