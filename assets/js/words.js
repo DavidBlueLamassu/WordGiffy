@@ -7,8 +7,10 @@ function getUserInput(){
     event.preventDefault();
     var userInput = $("#search-input").val();
     //Removes current text in place
-    $('#definitionHeader').children().remove();
-    $('#synonymHeader').children().remove();
+    $('#definition').children().remove();
+    $('#synonyms').children().remove();
+    $('#rhymes').children().remove();
+    $('#exampleSentance').children().remove();
     //Clears local storage so that it is only current rhymes that work
     localStorage.removeItem("rhymingWords");
     //Settins for API call
@@ -29,16 +31,16 @@ function getUserInput(){
         var definitionText = $('<p>');
         definitionText.attr("class", "definitionText");
         definitionText.text(response.results[0].definition);
-        $('#definitionHeader').append(definitionText);
+        $('#definition').append(definitionText);
 
         var synonymText = $('<p>');
         synonymText.attr("class", "synonymText");
         synonymText.text(response.results[0].synonyms);
-        $('#synonymHeader').append(synonymText);
+        $('#synonyms').append(synonymText);
       });
       //Runs the getRhymingWords function
       getRhymingWords(userInput);
-      
+      getExampleSentance(userInput);
   });
 }
 
@@ -70,10 +72,39 @@ function getRhymingWords(userInput){
       rhymingWords.push(newRhyme);
       //Sets this in local storage
       window.localStorage.setItem('rhymingWords', JSON.stringify(rhymingWords));
-      
+       
     }
+    var rhymeText = $('<p>');
+    rhymeText.attr("class", "rhymeText");
+    rhymeResultArray = [];
+    for (var j = 0; j < 5; j++){
+      rhymeResultArray.push(response.rhymes.all[j]);
+    }
+    console.log(rhymeResultArray);
+    rhymeText.text(rhymeResultArray);
+    $('#rhymes').append(rhymeText);
+
     gifDisplay();
-  })
-  
-   
+  }) 
+}
+
+function getExampleSentance(userInput){
+  //Settings for Ajax call
+  const settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://wordsapiv1.p.rapidapi.com/words/"+ userInput + "/examples",
+    "method": "GET",
+    "headers": {
+      "X-RapidAPI-Key": "995fce24e2msh73602efe9782e42p1eeb87jsnee72b111a680",
+      "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com"
+    }
+  };
+  $.ajax(settings).then(function(response){
+    console.log(response);
+    var exampleText = $('<p>');
+    exampleText.attr("class", "exampleText");
+    exampleText.text(response.examples[0]);
+    $('#exampleSentance').append(exampleText);
+  })  
 }
