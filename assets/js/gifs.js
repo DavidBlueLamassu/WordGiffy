@@ -1,4 +1,6 @@
 var giphyAPIKey = "ti79DLvD2w1cHW3G9O89zDknxYwE2tsP";
+// var searchArray = [];
+// var rhymingArray = [];
 
 function gifDisplay() {
 
@@ -10,13 +12,25 @@ function gifDisplay() {
     var gifSearch = $("#search-input").val();
     var localRhyme = localStorage.getItem("rhymingWords");
     var rhymeArray = JSON.parse(localRhyme);
-    console.log(rhymeArray);
+    //console.log(rhymeArray);
     var rhymeRandom = Math.floor(Math.random() * rhymeArray.length);
     var gifRhyme = rhymeArray[rhymeRandom].Rhyme;
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifSearch + "&limit=5&offset=0&rating=g&lang=en";
     var queryRhymeURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=funny+" + gifRhyme + "&limit=5&offset=0&rating=g&lang=en";
     
-    
+    console.log("A rhyming word: " + gifRhyme);
+    console.log("Rhyming Array: " + rhymingArray);
+    if (gifSearch !=="") {
+      searchArray.push(gifSearch);
+      rhymingArray.push(gifRhyme);
+      console.log("Rhyming Array 2: " + rhymingArray);
+      localStorage.setItem("pastWordSearch", JSON.stringify(searchArray));
+      localStorage.setItem("oldeRhyme", JSON.stringify(rhymingArray));
+      makeButtons();
+    } else {
+      return;
+    }
+
     if (gifSearch === "") {
           return;
     } else {
@@ -58,6 +72,39 @@ function gifDisplay() {
           $("#gif-text-rhyme").text(gifRhyme);
          
     })
+}}
 
+  // function makeButtons() {
   
-  }}
+  //   var pastWordSearch = JSON.parse(localStorage.getItem("pastWordSearch"));
+  //   var pastRhymes = JSON.parse(localStorage.getItem("oldeRhyme"));
+    
+  //   $("#history").empty();
+    
+  //   if (pastWordSearch !== null) {
+  //     searchArray = pastWordSearch;
+  //   }
+
+  //   if (pastRhymes !== null) {
+  //     rhymingArray = pastRhymes;
+  //   }
+  
+  //   console.log("rhymingArray" + rhymingArray);
+
+  //   for (var i = 0; i < searchArray.length; i++) {
+  //     var buttonMakerSearch = $("<button>");
+  //     var buttonMakerRhyme = $("<button>");
+  //     buttonMakerSearch.text(searchArray[i]);
+  //     buttonMakerRhyme.text(rhymingArray[i]);
+  //     buttonMakerSearch.attr("word-name", searchArray[i]);
+  //     buttonMakerRhyme.attr("word-name", rhymingArray[i]);
+  //     buttonMakerSearch.addClass("word-button");
+  //     buttonMakerRhyme.addClass("word-button");
+  //     buttonMakerSearch.css({"background-color": "rgb(215, 208, 208)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
+  //     "height": "30px", "width": "295px", "border-radius": "5px"})
+  //     buttonMakerRhyme.css({"background-color": "rgb(215, 208, 208)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
+  //     "height": "30px", "width": "295px", "border-radius": "5px"})
+  //     $("#history").prepend(buttonMakerRhyme);
+  //     $("#history").prepend(buttonMakerSearch);
+  //   }
+  // }
