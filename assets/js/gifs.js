@@ -16,6 +16,7 @@ function gifDisplay() {
     //console.log(rhymeArray);
     var rhymeRandom = Math.floor(Math.random() * rhymeArray.length);
     var gifRhyme = rhymeArray[rhymeRandom].Rhyme;
+    //var gifRhyme = "bullbat";
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=" + gifSearch + "&limit=5&offset=0&rating=g&lang=en";
     var queryRhymeURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=" + gifRhyme + "&limit=5&offset=0&rating=g&lang=en";
     
@@ -41,14 +42,26 @@ function gifDisplay() {
           url: queryURL,
           method: "GET"
         }).then(function(response) {
-        
+          console.log("Request for Image:")
           console.log(response);
           
           
-          var gitData = response.data;
-          var gifRandom = Math.floor(Math.random() * gitData.length);
+          var gifData = response.data;
+          
+          if (gifData.length === 0) {
+            console.log("gifData === " + gifData.length);
+            var gifNo = $("<p>");
+            gifNo.text("Sorry. No gifs match that search term.");
+            $("#gif-text").text(gifSearch);
+            $("#gif-text").append(gifNo);
+            gifNo.css("color", "black");
+            console.log("gitData === " + gifData.length);
+            return;
+          }
+
+          var gifRandom = Math.floor(Math.random() * gifData.length);
           var gifImage = response.data[gifRandom].images.downsized_large.url;
-          console.log(gitData);
+          console.log(gifData);
           console.log(gifImage);
           var gifDisplay = $("<img>");
           gifDisplay.attr("src", gifImage);
@@ -63,8 +76,20 @@ function gifDisplay() {
         }).then(function(response) {
         
           console.log(response);
-          var gitData = response.data;
-          var gifRandom = Math.floor(Math.random() * gitData.length);
+          var gifData = response.data;
+
+          if (gifData.length === 0) {
+            console.log("gifData === !!!" + gifData.length);
+            var gifNo = $("<p>");
+            gifNo.text("Sorry. No gifs match that search term.");
+            $("#gif-text-rhyme").text(gifRhyme);
+            $("#gif-text-rhyme").append(gifNo);
+            gifNo.css("color", "black");
+            console.log("gitData === " + gifData.length);
+            return;
+          }
+
+          var gifRandom = Math.floor(Math.random() * gifData.length);
           var gifImage = response.data[gifRandom].images.downsized_large.url;
           console.log(gifImage);
           var gifDisplay = $("<img>");
