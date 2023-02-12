@@ -5,6 +5,16 @@ makeButtons();
 getUserInput();
 clearScreen();
 
+$(document).on("click", ".word-button", function () {
+  var wordButton = $(this).attr("word-name");
+  var buttonSwitch = "off";
+  localStorage.setItem("wordSearch", wordButton);
+  localStorage.setItem("buttonSwitch", buttonSwitch);
+  console.log("wordButton: "+ wordButton);
+  wordSearch();
+
+})
+
 //Function to get the user input
 function getUserInput(){
   //Runs when user clicks search button and gets the value from the search bar
@@ -12,6 +22,14 @@ function getUserInput(){
     console.log("rhymingArray2: " + rhymingArray);
     event.preventDefault();
     var userInput = $("#search-input").val();
+    localStorage.setItem("wordSearch", userInput);
+    wordSearch();
+    //makeButtons();
+})}
+
+  function wordSearch() {
+    var userInput = localStorage.getItem("wordSearch")
+    console.log("userInput: " + userInput);
     //Removes current text in place
     $('#definition').children().remove();
     $('#synonyms').children().remove();
@@ -47,8 +65,8 @@ function getUserInput(){
       //Runs the getRhymingWords function
       getRhymingWords(userInput);
       getExampleSentance(userInput);
-  });
-}
+  };
+
 
 function getRhymingWords(userInput){
   //Settings for Ajax call
@@ -134,9 +152,13 @@ function clearScreen(){
     $('#rhymes').children().remove();
     $('#exampleSentance').children().remove();
     $("#gif-image").children().remove();
-    $("#gif-text").children().remove();
+    $("#gif-text").empty();
     $("#gif-rhyme").children().remove();
-    $("#gif-text-rhyme").children().remove();
+    $("#gif-text-rhyme").empty();
+    $("#history").children().remove();
+    localStorage.removeItem("pastWordSearch");
+    localStorage.removeItem("oldeRhyme");
+    
   })
 }
 
