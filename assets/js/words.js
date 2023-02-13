@@ -156,9 +156,21 @@ function clearScreen(){
     $("#gif-rhyme").children().remove();
     $("#gif-text-rhyme").empty();
     $("#history").children().remove();
-    localStorage.removeItem("pastWordSearch");
-    localStorage.removeItem("oldeRhyme");
     
+    var searchArray = [];
+    var rhymingArray = [];
+    localStorage.setItem("pastWordSearch", JSON.stringify(searchArray));
+    localStorage.setItem("oldeRhyme", JSON.stringify(rhymingArray));
+    
+    // localStorage.removeItem("pastWordSearch");
+    // localStorage.removeItem("oldeRhyme");
+    // var pastWordSearch = JSON.parse(localStorage.getItem("pastWordSearch"));
+    // var pastRhymes = JSON.parse(localStorage.getItem("oldeRhyme"));
+    // console.log("Past word search")
+    // console.log(pastWordSearch);
+    // console.log("Past rhyme search")
+    // console.log(pastRhymes);
+    makeButtons();
   })
 }
 
