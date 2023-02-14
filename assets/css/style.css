@@ -93,8 +93,9 @@ h4 {
 
 .sectionHeading {
     color: white;
+    text-align: center;
 }
 
 .container-fluid {
-    padding-top: 40px;
+    padding-top: 10px;
 }
