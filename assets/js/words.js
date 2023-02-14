@@ -192,19 +192,33 @@ function makeButtons() {
   console.log("rhymingArray1: " + rhymingArray);
 
   for (var i = 0; i < searchArray.length; i++) {
-    var buttonMakerSearch = $("<button>");
-    var buttonMakerRhyme = $("<button>");
-    buttonMakerSearch.text(searchArray[i]);
-    buttonMakerRhyme.text(rhymingArray[i]);
+    var buttonMakerSearch = $("<div>");
+    var buttonMakerRhyme = $("<div>");
+    var article = $("<article>");
+    var textSearch = $("<p>");
+    var textRhyme = $("<p>");
+    
+    textSearch.text(searchArray[i]);
+    textRhyme.text(rhymingArray[i]);
+    
     buttonMakerSearch.attr("word-name", searchArray[i]);
     buttonMakerRhyme.attr("word-name", rhymingArray[i]);
     buttonMakerSearch.addClass("word-button");
     buttonMakerRhyme.addClass("word-button");
-    buttonMakerSearch.css({"background-color": "rgb(215, 208, 208)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
-    "height": "30px", "width": "295px", "border-radius": "5px"})
-    buttonMakerRhyme.css({"background-color": "rgb(215, 208, 208)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
-    "height": "30px", "width": "295px", "border-radius": "5px"})
-    $("#history").prepend(buttonMakerRhyme);
-    $("#history").prepend(buttonMakerSearch);
+    buttonMakerSearch.css({"background-color": "rgba(19, 19, 76, 0.432)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
+    "height": "80px", "width": "138px", "border-radius": "5px", "margin-left": "5px", "cursor": "pointer", "display": "flex",
+    "align-items": "center", "justify-content": "center"})
+    buttonMakerRhyme.css({"background-color": "rgba(102, 102, 119, 0.432)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
+    "height": "80px", "width": "138px", "border-radius": "5px", "margin-left": "5px", "cursor": "pointer", "display": "flex",
+    "align-items": "center", "justify-content": "center"})
+    $("#history").css({"display": "flex", "flex-direction": "column"})
+    textSearch.css({"color": "white", "margin": "0", "text-align": "center"});
+    textRhyme.css({"color": "white", "margin": "0", "text-align": "center"});
+    article.css({"display": "flex", "flex-direction": "row"});
+    article.prepend(buttonMakerRhyme);
+    article.prepend(buttonMakerSearch);
+    buttonMakerSearch.append(textSearch);
+    buttonMakerRhyme.append(textRhyme);
+    $("#history").append(article);
   }
 }
