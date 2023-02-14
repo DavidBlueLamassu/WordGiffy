@@ -156,6 +156,7 @@ function clearScreen(){
     $("#gif-rhyme").children().remove();
     $("#gif-text-rhyme").empty();
     $("#history").children().remove();
+    //$("#history").empty();
     
     var searchArray = [];
     var rhymingArray = [];
@@ -223,6 +224,7 @@ function makeButtons() {
     $("#history").prepend(article);
 
   }
+  if (searchArray.length > 0) {
   var headerSearch = $("<p>");
   var headerRhyme = $ ("<p>");
   var headerArticle = $("<article>");
@@ -234,4 +236,5 @@ function makeButtons() {
   headerArticle.css({"display": "flex", "flex-direction": "row"});
   headerSearch.css({"margin-left": "30px", "margin-bottom": "3px", "margin-top": "10px"});
   headerRhyme.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"})
+  }
 }
