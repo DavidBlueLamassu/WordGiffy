@@ -36,119 +36,119 @@
     <p>For busy writers who need to know more about the words they use....</p>
 </div>
 
-
+<main>
 <!--*** https://getbootstrap.com/docs/4.1/components/card/ -->
-
-<div class="card" style="width: 18rem;">
+<aside id="search-menu">
+    <div class="card" style="width: 18rem;">
     <img src="https://img.freepik.com/premium-vector/man-reading-book-logo-template-design_293731-129.jpg?w=2000" class="card-img-top" alt="...">
     <div class="card-body">
-      <p class="card-text">Enter a word below to learn more about it:</p>
-      <div class="search-field">
-        <form id="search-form" class="form">
-            <div class="form-inline">
-                <div class="input-group">
-                    <input class="form-input word-search" type="text" id="search-input" placeholder="Enter word here" />
-                    <button type="submit" class="btn search-button" id="search-button">Search</button>
-                    <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+        <p class="card-text">Enter a word below to learn more about it:</p>
+        <div class="search-field">
+            <form id="search-form" class="form">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <input class="form-input word-search" type="text" id="search-input" placeholder="Enter word here" />
+                        <button type="submit" class="btn search-button" id="search-button">Search</button>
+                        <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
     </div>
     </div>
     <div id="history"></div>
 
   <!--*** Modal from Bootstrap sample https://getbootstrap.com/docs/4.1/components/modal/   -->
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Erasing search history</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Erasing search history</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Confirm you want to clear search history.. </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="clearScreen">OK</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <p>Confirm you want to clear search history.. </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="clearScreen">OK</button>
-          
-       </div>
-      </div>
     </div>
-  </div>
-
+</aside>
 
 <!-- ***Results Cards derived from https://getbootstrap.com/docs/4.1/layout/grid/ -->
 
+    <section id="results">
+        <div class="container-fluid content">
+            <h2 class="sectionHeading">Results:</h2>
+            <div class="row myResults">
 
-<div class="container-fluid content">
-    <h2 class="sectionHeading">Results:</h2>
-    <div class="row myResults">
+                <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" id="definition">Definition:</h5>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title" id="definition">Definition:</h5>
+                <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" id="synonyms">Synonyms:</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" id="rhymes">Rhymes:</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" id="exampleSentance">Example Sentence:</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title" id="synonyms">Synonyms:</h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title" id="rhymes">Rhymes:</h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="cardContainer col-lg-3 col-md-3 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title" id="exampleSentance">Example Sentence:</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
+            <br>
 
 
     <!-- ***GIF Results  https://getbootstrap.com/docs/4.1/components/card/ -->
 
-    <div class="container-fluid content">
-        <h2 class="sectionHeading">Make it GIFFY:</h2>
-        <div class="row">
-            <div class="col-sm">
-                <div class="card" id="definition">
-                    <div class="card-body">
-                        <h5 class="card-title">This Word:</h5>
-                        <p class="card-text" id="gif-text"></p>
-                        <div id="gif-image"></div>
+        <div class="container-fluid content">
+            <h2 class="sectionHeading">Make it GIFFY:</h2>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card" id="definition">
+                        <div class="card-body">
+                            <h5 class="card-title">This Word:</h5>
+                            <p class="card-text" id="gif-text"></p>
+                            <div id="gif-image"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card" id="ryhmes">
+                        <div class="card-body">
+                            <h5 class="card-title">Rhymes With:</h5>
+                            <p class="card-text" id="gif-text-rhyme"></p>
+                            <div id="gif-rhyme"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
-                <div class="card" id="ryhmes">
-                    <div class="card-body">
-                        <h5 class="card-title">Rhymes With:</h5>
-                        <p class="card-text" id="gif-text-rhyme"></p>
-                        <div id="gif-rhyme"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    </section>
+</main>
         <!-- ***Footer -->
         <div>
             <footer>

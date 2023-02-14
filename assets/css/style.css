@@ -1,3 +1,8 @@
+main {
+    display: flex;
+    flex-direction: row;
+}
+
 .jumbotron {
     color: black;
     font-weight: bolder;
