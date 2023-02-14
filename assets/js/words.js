@@ -1,3 +1,7 @@
+var searchArray = [];
+var rhymingArray = [];
+
+makeButtons();
 getUserInput();
 clearScreen();
 
@@ -5,6 +9,7 @@ clearScreen();
 function getUserInput(){
   //Runs when user clicks search button and gets the value from the search bar
   $("#search-button").on("click", function(event){
+    console.log("rhymingArray2: " + rhymingArray);
     event.preventDefault();
     var userInput = $("#search-input").val();
     //Removes current text in place
@@ -133,4 +138,39 @@ function clearScreen(){
     $("#gif-rhyme").children().remove();
     $("#gif-text-rhyme").children().remove();
   })
+}
+
+function makeButtons() {
+  
+  var pastWordSearch = JSON.parse(localStorage.getItem("pastWordSearch"));
+  var pastRhymes = JSON.parse(localStorage.getItem("oldeRhyme"));
+  
+  $("#history").empty();
+  
+  if (pastWordSearch !== null) {
+    searchArray = pastWordSearch;
+  }
+
+  if (pastRhymes !== null) {
+    rhymingArray = pastRhymes;
+  }
+
+  console.log("rhymingArray1: " + rhymingArray);
+
+  for (var i = 0; i < searchArray.length; i++) {
+    var buttonMakerSearch = $("<button>");
+    var buttonMakerRhyme = $("<button>");
+    buttonMakerSearch.text(searchArray[i]);
+    buttonMakerRhyme.text(rhymingArray[i]);
+    buttonMakerSearch.attr("word-name", searchArray[i]);
+    buttonMakerRhyme.attr("word-name", rhymingArray[i]);
+    buttonMakerSearch.addClass("word-button");
+    buttonMakerRhyme.addClass("word-button");
+    buttonMakerSearch.css({"background-color": "rgb(215, 208, 208)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
+    "height": "30px", "width": "295px", "border-radius": "5px"})
+    buttonMakerRhyme.css({"background-color": "rgb(215, 208, 208)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
+    "height": "30px", "width": "295px", "border-radius": "5px"})
+    $("#history").prepend(buttonMakerRhyme);
+    $("#history").prepend(buttonMakerSearch);
+  }
 }
