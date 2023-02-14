@@ -1,3 +1,5 @@
+//Arrays used with "localStorage" to store and retrieve terms from previous searches
+
 var searchArray = [];
 var rhymingArray = [];
 
@@ -5,12 +7,26 @@ makeButtons();
 getUserInput();
 clearScreen();
 
+//Event listener to activate buttons relating to previous searches
+
 $(document).on("click", ".word-button", function () {
+  
+  //Retrieves index value for button; this is set using the makeButtons() function
   var wordButton = $(this).attr("word-name");
+  
+  //This variable works with a conditional to prevent searches begun using buttons from generating more buttons.
+  //Search terms started using the search form will be pushed into "searchArray" (and associated rhyming words
+  //will be pushed into "rhymingArray") and retained in "localStorage" from where they can be used to make buttons
+  //for past searches. This process will not run when "buttonSwitch" === "off".
   var buttonSwitch = "off";
+
+  //Saves the value of the button clicked to "localStorage"
   localStorage.setItem("wordSearch", wordButton);
+
+  //Saves the value of "buttonSwitch" to "localStorage".
   localStorage.setItem("buttonSwitch", buttonSwitch);
-  console.log("wordButton: "+ wordButton);
+
+  //Calls a function which will begin a word search in Words API.
   wordSearch();
 
 })
@@ -157,13 +173,18 @@ function clearScreen(){
   })
 }
 
+//A function to make buttons for words (and their rhymes) from past searches.
 function makeButtons() {
   
+  //These variables hold the values for old search terms and rhymes retained in "localStorage".
   var pastWordSearch = JSON.parse(localStorage.getItem("pastWordSearch"));
   var pastRhymes = JSON.parse(localStorage.getItem("oldeRhyme"));
   
+  //Removes previously printed buttons to prevent duplication.
   $("#history").empty();
   
+  //Conditionals that update the values of "searchArray" and "rhymingArray" once these 
+  //have been retained in "localStorage".
   if (pastWordSearch !== null) {
     searchArray = pastWordSearch;
   }
@@ -172,18 +193,31 @@ function makeButtons() {
     rhymingArray = pastRhymes;
   }
 
+  //A "for" loop to generate buttons from the values held in "searchArray" and "rhymingArray".
   for (var i = 0; i < searchArray.length; i++) {
+    
+    //Variables to creat new elements
     var buttonMakerSearch = $("<div>");
     var buttonMakerRhyme = $("<div>");
     var article = $("<article>");
     var textSearch = $("<p>");
     var textRhyme = $("<p>");
+    
+    //Text content for the buttons; one contains an old search term, the second contains a 
+    //word which rhymes with that term (obtained from Words API).
     textSearch.text(searchArray[i]);
     textRhyme.text(rhymingArray[i]);
+
+    //The buttons are indexed with the terms used for their text content. This indexing will
+    //be used to begin a search through Words API once the button is clicked.
     buttonMakerSearch.attr("word-name", searchArray[i]);
     buttonMakerRhyme.attr("word-name", rhymingArray[i]);
+
+    //The button class will be used as a target for the buttons' "eventListener".
     buttonMakerSearch.addClass("word-button");
     buttonMakerRhyme.addClass("word-button");
+
+    //Formatting for the buttons, text and containers (each pair of buttons is contained within an article for ease of styling).
     buttonMakerSearch.css({"background-color": "rgba(19, 19, 76, 0.432)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
     "height": "80px", "width": "138px", "border-radius": "5px", "margin-left": "5px", "cursor": "pointer", "display": "flex",
     "align-items": "center", "justify-content": "center"})
@@ -194,8 +228,9 @@ function makeButtons() {
     textSearch.css({"color": "white", "margin": "0", "text-align": "center"});
     textRhyme.css({"color": "white", "margin": "0", "text-align": "center"});
     article.css({"display": "flex", "flex-direction": "row"});
-    article.prepend(buttonMakerRhyme);
-    article.prepend(buttonMakerSearch);
+    
+    article.append(buttonMakerSearch);
+    article.append(buttonMakerRhyme);
     buttonMakerSearch.append(textSearch);
     buttonMakerRhyme.append(textRhyme);
     $("#history").prepend(article);
