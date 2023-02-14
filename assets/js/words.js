@@ -19,17 +19,14 @@ $(document).on("click", ".word-button", function () {
 function getUserInput(){
   //Runs when user clicks search button and gets the value from the search bar
   $("#search-button").on("click", function(event){
-    console.log("rhymingArray2: " + rhymingArray);
     event.preventDefault();
     var userInput = $("#search-input").val();
     localStorage.setItem("wordSearch", userInput);
     wordSearch();
-    //makeButtons();
-})}
+  })}
 
   function wordSearch() {
     var userInput = localStorage.getItem("wordSearch")
-    console.log("userInput: " + userInput);
     //Removes current text in place
     $('#definition').children().remove();
     $('#synonyms').children().remove();
@@ -50,7 +47,6 @@ function getUserInput(){
       };
       //Runs API call
       $.ajax(settings).then(function (response) {
-        console.log(response)
         //Creates and appends a <p> tag for the definition and synonyms
         var definitionText = $('<p>');
         definitionText.attr("class", "definitionText");
@@ -82,7 +78,6 @@ function getRhymingWords(userInput){
   };
   //Ajax call
   $.ajax(settings).then(function(response){
-    console.log(response)
     //Either gets the words from local storage or creates an array if this doesn't exist
     var rhymingWords = JSON.parse(window.localStorage.getItem('rhymingWords')) || [];
     //Loops through and creates an array which gets a random word that rhymes 10 times
@@ -107,7 +102,6 @@ function getRhymingWords(userInput){
     for (var j = 0; j < 5; j++){
       rhymeResultArray.push(response.rhymes.all[j]);
     }
-    console.log(rhymeResultArray);
     //Sets the text and appends this array to the html document
     rhymeText.text(rhymeResultArray);
     $('#rhymes').append(rhymeText);
@@ -132,7 +126,6 @@ function getExampleSentance(userInput){
   };
   //Appends the first example given in the array
   $.ajax(settings).then(function(response){
-    console.log(response);
     var exampleText = $('<p>');
     exampleText.attr("class", "exampleText");
     exampleText.text(response.examples[0]);
@@ -156,21 +149,10 @@ function clearScreen(){
     $("#gif-rhyme").children().remove();
     $("#gif-text-rhyme").empty();
     $("#history").children().remove();
-    //$("#history").empty();
-    
     var searchArray = [];
     var rhymingArray = [];
     localStorage.setItem("pastWordSearch", JSON.stringify(searchArray));
     localStorage.setItem("oldeRhyme", JSON.stringify(rhymingArray));
-    
-    // localStorage.removeItem("pastWordSearch");
-    // localStorage.removeItem("oldeRhyme");
-    // var pastWordSearch = JSON.parse(localStorage.getItem("pastWordSearch"));
-    // var pastRhymes = JSON.parse(localStorage.getItem("oldeRhyme"));
-    // console.log("Past word search")
-    // console.log(pastWordSearch);
-    // console.log("Past rhyme search")
-    // console.log(pastRhymes);
     makeButtons();
   })
 }
@@ -190,19 +172,14 @@ function makeButtons() {
     rhymingArray = pastRhymes;
   }
 
-  console.log("rhymingArray1: " + rhymingArray);
-
   for (var i = 0; i < searchArray.length; i++) {
     var buttonMakerSearch = $("<div>");
     var buttonMakerRhyme = $("<div>");
     var article = $("<article>");
     var textSearch = $("<p>");
     var textRhyme = $("<p>");
-   
-
     textSearch.text(searchArray[i]);
     textRhyme.text(rhymingArray[i]);
-    
     buttonMakerSearch.attr("word-name", searchArray[i]);
     buttonMakerRhyme.attr("word-name", rhymingArray[i]);
     buttonMakerSearch.addClass("word-button");
@@ -224,6 +201,7 @@ function makeButtons() {
     $("#history").prepend(article);
 
   }
+  
   if (searchArray.length > 0) {
   var headerSearch = $("<p>");
   var headerRhyme = $ ("<p>");
