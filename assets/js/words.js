@@ -37,47 +37,49 @@ function getUserInput(){
   $("#search-button").on("click", function(event){
     event.preventDefault();
     var userInput = $("#search-input").val();
-    localStorage.setItem("wordSearch", userInput);
-    wordSearch();
+    if (userInput !== ""){
+      localStorage.setItem("wordSearch", userInput);
+      wordSearch();
+    }
   })}
 
-  function wordSearch() {
-    var userInput = localStorage.getItem("wordSearch")
-    //Removes current text in place
-    $('#definition').children().remove();
-    $('#synonyms').children().remove();
-    $('#rhymes').children().remove();
-    $('#exampleSentance').children().remove();
-    //Clears local storage so that it is only current rhymes that work
-    localStorage.removeItem("rhymingWords");
-    //Settins for API call
-    const settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://wordsapiv1.p.rapidapi.com/words/"+ userInput,
-      "method": "GET",
-      "headers": {
-        "X-RapidAPI-Key": "995fce24e2msh73602efe9782e42p1eeb87jsnee72b111a680",
-        "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com"
-        }
-      };
-      //Runs API call
-      $.ajax(settings).then(function (response) {
-        //Creates and appends a <p> tag for the definition and synonyms
-        var definitionText = $('<p>');
-        definitionText.attr("class", "definitionText");
-        definitionText.text(response.results[0].definition);
-        $('#definition').append(definitionText);
+function wordSearch() {
+  var userInput = localStorage.getItem("wordSearch")
+  //Removes current text in place
+  $('#definition').children().remove();
+  $('#synonyms').children().remove();
+  $('#rhymes').children().remove();
+  $('#exampleSentance').children().remove();
+  //Clears local storage so that it is only current rhymes that work
+  localStorage.removeItem("rhymingWords");
+  //Settins for API call
+  const settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://wordsapiv1.p.rapidapi.com/words/"+ userInput,
+    "method": "GET",
+    "headers": {
+      "X-RapidAPI-Key": "995fce24e2msh73602efe9782e42p1eeb87jsnee72b111a680",
+      "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com"
+      }
+    };
+    //Runs API call
+    $.ajax(settings).then(function (response) {
+      //Creates and appends a <p> tag for the definition and synonyms
+      var definitionText = $('<p>');
+      definitionText.attr("class", "definitionText");
+      definitionText.text(response.results[0].definition);
+      $('#definition').append(definitionText);
 
-        var synonymText = $('<p>');
-        synonymText.attr("class", "synonymText");
-        synonymText.text(response.results[0].synonyms);
-        $('#synonyms').append(synonymText);
-      });
-      //Runs the getRhymingWords function
-      getRhymingWords(userInput);
-      getExampleSentance(userInput);
-  };
+      var synonymText = $('<p>');
+      synonymText.attr("class", "synonymText");
+      synonymText.text(response.results[0].synonyms);
+      $('#synonyms').append(synonymText);
+    });
+    //Runs the getRhymingWords function
+    getRhymingWords(userInput);
+    getExampleSentance(userInput);
+};
 
 
 function getRhymingWords(userInput){
