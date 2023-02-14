@@ -197,7 +197,8 @@ function makeButtons() {
     var article = $("<article>");
     var textSearch = $("<p>");
     var textRhyme = $("<p>");
-    
+   
+
     textSearch.text(searchArray[i]);
     textRhyme.text(rhymingArray[i]);
     
@@ -219,6 +220,18 @@ function makeButtons() {
     article.prepend(buttonMakerSearch);
     buttonMakerSearch.append(textSearch);
     buttonMakerRhyme.append(textRhyme);
-    $("#history").append(article);
+    $("#history").prepend(article);
+
   }
+  var headerSearch = $("<p>");
+  var headerRhyme = $ ("<p>");
+  var headerArticle = $("<article>");
+  headerSearch.text("Old Searches:");
+  headerRhyme.text("Old Rhymes:")
+  headerArticle.append(headerSearch);
+  headerArticle.append(headerRhyme);
+  $("#history").prepend(headerArticle);
+  headerArticle.css({"display": "flex", "flex-direction": "row"});
+  headerSearch.css({"margin-left": "30px", "margin-bottom": "3px", "margin-top": "10px"});
+  headerRhyme.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"})
 }
