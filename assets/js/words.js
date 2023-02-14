@@ -50,6 +50,7 @@ function wordSearch() {
   $('#synonyms').children().remove();
   $('#rhymes').children().remove();
   $('#exampleSentance').children().remove();
+  $('#search-input').val("");
   //Clears local storage so that it is only current rhymes that work
   localStorage.removeItem("rhymingWords");
   //Settins for API call
