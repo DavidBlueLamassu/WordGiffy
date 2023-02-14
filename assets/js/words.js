@@ -66,16 +66,34 @@ function wordSearch() {
     };
     //Runs API call
     $.ajax(settings).then(function (response) {
+      console.log(response)
       //Creates and appends a <p> tag for the definition and synonyms
       var definitionText = $('<p>');
       definitionText.attr("class", "definitionText");
-      definitionText.text(response.results[0].definition);
-      $('#definition').append(definitionText);
+      //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
+      if (response.results.length != 0){
+        //Generates a random number so that results aren't set
+        var randomNumber = Math.floor(Math.random () * response.results.length);
+        console.log(randomNumber)
+        definitionText.text(response.results[randomNumber].definition);
+        $('#definition').append(definitionText);
+      }
+      else{
+        definitionText.text("Sorry, this hasn't returned a result");
+        $('#definition').append(definitionText);  
+      }
 
       var synonymText = $('<p>');
       synonymText.attr("class", "synonymText");
-      synonymText.text(response.results[0].synonyms);
+      //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
+      if (response.results[randomNumber].synonyms != undefined){
+      synonymText.text(response.results[randomNumber].synonyms);
       $('#synonyms').append(synonymText);
+      }
+      else{
+        synonymText.text("Sorry, this hasn't returned a result");
+        $('#synonyms').append(synonymText);
+      }
     });
     //Runs the getRhymingWords function
     getRhymingWords(userInput);
@@ -117,13 +135,20 @@ function getRhymingWords(userInput){
     rhymeText.attr("class", "rhymeText");
     //Creates an array to store rhymed words in it
     rhymeResultArray = [];
+    //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
     //Loops through the first 5 items in rhyming array and pushes it to new array
+    if (response.rhymes.length != 0){
     for (var j = 0; j < 5; j++){
-      rhymeResultArray.push(response.rhymes.all[j]);
+        rhymeResultArray.push(response.rhymes.all[j]);
+      }
+      //Sets the text and appends this array to the html document
+      rhymeText.text(rhymeResultArray);
+      $('#rhymes').append(rhymeText);
     }
-    //Sets the text and appends this array to the html document
-    rhymeText.text(rhymeResultArray);
-    $('#rhymes').append(rhymeText);
+    else{
+      rhymeText.text("Sorry there are no rhymes for this word!");
+      $('#rhymes').append(rhymeText);  
+    }
 
     //Runs gif display function so that it can use the rhyming words
     gifDisplay();
@@ -145,10 +170,18 @@ function getExampleSentance(userInput){
   };
   //Appends the first example given in the array
   $.ajax(settings).then(function(response){
+    console.log(response)
     var exampleText = $('<p>');
     exampleText.attr("class", "exampleText");
-    exampleText.text(response.examples[0]);
-    $('#exampleSentance').append(exampleText);
+    //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
+    if (response.examples.length != 0){
+      exampleText.text(response.examples[0]);
+      $('#exampleSentance').append(exampleText);
+    }
+    else{
+      exampleText.text("Sorry, there are no examples for this word!");
+      $('#exampleSentance').append(exampleText);
+    }
   })  
 }
 
