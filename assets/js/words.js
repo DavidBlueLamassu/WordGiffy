@@ -73,7 +73,6 @@ function wordSearch() {
     };
     //Runs API call
     $.ajax(settings).then(function (response) {
-      console.log(response)
       //Creates and appends a <p> tag for the definition and synonyms
       var definitionText = $('<p>');
       definitionText.attr("class", "definitionText");
@@ -81,8 +80,16 @@ function wordSearch() {
       if (response.results.length != 0){
         //Generates a random number so that results aren't set
         var randomNumber = Math.floor(Math.random () * response.results.length);
-        console.log(randomNumber)
-        definitionText.text(response.results[randomNumber].definition);
+        //Gets the API response needed
+        definitionTextString = response.results[randomNumber].definition;
+        //Takes the first letter of array and puts it into uppercase
+        definitionFirstLetter = definitionTextString.charAt(0);
+        firstLetterCapital = definitionFirstLetter.toUpperCase();
+        //Removes substring from the entire string
+        remainingLetters = definitionTextString.slice(1);
+        //Concatonates the string together and adds it as the text for the example sentance
+        completeDefinitionSentence = firstLetterCapital + remainingLetters + ".";
+        definitionText.text(completeDefinitionSentence);
         $('#definition').append(definitionText);
       }
       else{
@@ -178,7 +185,6 @@ function getExampleSentance(userInput){
   };
   //Appends the first example given in the array
   $.ajax(settings).then(function(response){
-    console.log(response)
     var exampleText = $('<p>');
     exampleText.attr("class", "exampleText");
     //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
@@ -191,7 +197,7 @@ function getExampleSentance(userInput){
       //Removes substring from the entire string
       remainingLetters = exampleTextString.slice(1);
       //Concatonates the strings together and adds it as the text for the example sentence
-      completeExampleSentence = firstLetterCapital + remainingLetters;
+      completeExampleSentence = firstLetterCapital + remainingLetters + ".";
       exampleText.text(completeExampleSentence);
       $('#exampleSentance').append(exampleText);
     }
