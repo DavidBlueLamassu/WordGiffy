@@ -1,8 +1,8 @@
 //Arrays used with "localStorage" to store and retrieve terms from previous searches
-
 var searchArray = [];
 var rhymingArray = [];
 
+//Sets the default display to a "background-image"; this is removed once there are search results to display.
 $("#results").css("display", "none");
 $("#start-image").css("display", "initial");
 
@@ -11,7 +11,6 @@ getUserInput();
 clearScreen();
 
 //Event listener to activate buttons relating to previous searches
-
 $(document).on("click", ".word-button", function () {
   
   //Retrieves index value for button; this is set using the makeButtons() function
@@ -49,8 +48,10 @@ function getUserInput(){
 function wordSearch() {
   var userInput = localStorage.getItem("wordSearch")
   
+  //Search results are now displayed and the default "background-image" is removed.
   $("#results").css("display", "initial");
   $("#start-image").css("display", "none");
+  
   //Removes current text in place
   $('#definition').children().remove();
   $('#synonyms').children().remove();
@@ -198,6 +199,7 @@ function clearScreen(){
     //Resets the search input field
     $("#search-input").val("");
 
+    //Removes all search boxes and buttons.
     $('#definition').children().remove();
     $('#synonyms').children().remove();
     $('#rhymes').children().remove();
@@ -207,12 +209,17 @@ function clearScreen(){
     $("#gif-rhyme").children().remove();
     $("#gif-text-rhyme").empty();
     $("#history").children().remove();
+    
+    //Clears "localStorage" of old search terms and rhymes
     var searchArray = [];
     var rhymingArray = [];
     localStorage.setItem("pastWordSearch", JSON.stringify(searchArray));
     localStorage.setItem("oldeRhyme", JSON.stringify(rhymingArray));
+    
+    //Resets the default "background-image" display until search results are available.
     $("#results").css("display", "none");
     $("#start-image").css("display", "initial");
+    
     makeButtons();
   })
 }
@@ -273,23 +280,38 @@ function makeButtons() {
     textRhyme.css({"color": "white", "margin": "0", "text-align": "center"});
     article.css({"display": "flex", "flex-direction": "row"});
     
+    //Appends search button text to the search buttons and the search buttons to an article.
     article.append(buttonMakerSearch);
     article.append(buttonMakerRhyme);
     buttonMakerSearch.append(textSearch);
     buttonMakerRhyme.append(textRhyme);
+    
+    //Prepends an article to the "#history" element, so that the most recent search terms appear first.
     $("#history").prepend(article);
 
   }
   
-  if (searchArray.length > 0) {
+//Code to make headers for the old search buttons; the conditional prevents these headers from being
+//displayed until buttons have been made from old search terms.
+if (searchArray.length > 0) {
+  
+  //Elements to display the headers.
   var headerSearch = $("<p>");
   var headerRhyme = $ ("<p>");
   var headerArticle = $("<article>");
+  
+  //Header text.
   headerSearch.text("Old Searches:");
   headerRhyme.text("Old Rhymes:")
+
+  //Header elements containing text are placed inside an "article" for ease of formatting.
   headerArticle.append(headerSearch);
   headerArticle.append(headerRhyme);
+
+  //The "article" is prepended to the "#history" element so that it appears above the search buttons.
   $("#history").prepend(headerArticle);
+
+  //Formatting of the button header elements.
   headerArticle.css({"display": "flex", "flex-direction": "row"});
   headerSearch.css({"margin-left": "30px", "margin-bottom": "3px", "margin-top": "10px"});
   headerRhyme.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"})
