@@ -25,6 +25,10 @@ function gifDisplay() {
     if (gifSearch !=="" && buttonSwitch !== "off") {
       searchArray.push(gifSearch);
       rhymingArray.push(gifRhyme);
+      if (searchArray.length > 5) {
+        searchArray.shift();
+        rhymingArray.shift();
+      }
       console.log("Rhyming Array 2: " + rhymingArray);
       localStorage.setItem("pastWordSearch", JSON.stringify(searchArray));
       localStorage.setItem("oldeRhyme", JSON.stringify(rhymingArray));
