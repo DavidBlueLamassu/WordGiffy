@@ -16,6 +16,16 @@ main {
     margin-top: 2px;
 }
 
+/*The image used as a background is a photograph of the temporary lending library used during alterations to the Newcastle-upon-Tyne
+Central Library made in 1949. This was downloaded from Flickr: https://www.flickr.com/photos/newcastlelibraries/4081723214 
+(site last visited 15 February 2023).*/
+#start-image {
+    background-image: url(../images/newcastle-library.jpg);
+    width: 100%;
+    background-size: cover;
+    height: 1000px;
+}
+
 .background-image {
     height: 50px;
 }

@@ -3,6 +3,9 @@
 var searchArray = [];
 var rhymingArray = [];
 
+$("#results").css("display", "none");
+$("#start-image").css("display", "initial");
+
 makeButtons();
 getUserInput();
 clearScreen();
@@ -45,6 +48,9 @@ function getUserInput(){
 
 function wordSearch() {
   var userInput = localStorage.getItem("wordSearch")
+  
+  $("#results").css("display", "initial");
+  $("#start-image").css("display", "none");
   //Removes current text in place
   $('#definition').children().remove();
   $('#synonyms').children().remove();
@@ -205,6 +211,8 @@ function clearScreen(){
     var rhymingArray = [];
     localStorage.setItem("pastWordSearch", JSON.stringify(searchArray));
     localStorage.setItem("oldeRhyme", JSON.stringify(rhymingArray));
+    $("#results").css("display", "none");
+    $("#start-image").css("display", "initial");
     makeButtons();
   })
 }
