@@ -94,7 +94,8 @@ function wordSearch() {
       synonymText.attr("class", "synonymText");
       //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
       if (response.results[randomNumber].synonyms != undefined){
-      synonymText.text(response.results[randomNumber].synonyms);
+        var synonyms = response.results[randomNumber].synonyms;
+        synonymText.text(synonyms.join(", "));
       $('#synonyms').append(synonymText);
       }
       else{
@@ -149,7 +150,7 @@ function getRhymingWords(userInput){
         rhymeResultArray.push(response.rhymes.all[j]);
       }
       //Sets the text and appends this array to the html document
-      rhymeText.text(rhymeResultArray);
+      rhymeText.text(rhymeResultArray.join(", "));
       $('#rhymes').append(rhymeText);
     }
     else{
