@@ -183,7 +183,16 @@ function getExampleSentance(userInput){
     exampleText.attr("class", "exampleText");
     //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
     if (response.examples.length != 0){
-      exampleText.text(response.examples[0]);
+      //Gets the API response needed
+      exampleTextString = response.examples[0];
+      //Takes the first letter of array and puts it into uppercase
+      exampleTextFirstLetter = exampleTextString.charAt(0);
+      firstLetterCapital = exampleTextFirstLetter.toUpperCase();
+      //Removes substring from the entire string
+      remainingLetters = exampleTextString.slice(1);
+      //Concatonates the strings together and adds it as the text for the example sentence
+      completeExampleSentence = firstLetterCapital + remainingLetters;
+      exampleText.text(completeExampleSentence);
       $('#exampleSentance').append(exampleText);
     }
     else{
