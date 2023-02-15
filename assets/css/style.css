@@ -99,3 +99,18 @@ h4 {
 .container-fluid {
     padding-top: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+    .jumbotron h1 {
+        font-size: 20px;
+    }
+    .jumbotron p {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .jumbotron p {
+        display: none;
+    }
+}
