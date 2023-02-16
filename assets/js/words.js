@@ -22,7 +22,7 @@ $(document).on("click", ".word-button", function () {
   //for past searches. This process will not run when "buttonSwitch" === "off".
   var buttonSwitch = "off";
 
-  //Saves the value of the button clicked to "localStorage"
+  //Saves the value of the button clicked to "localStorage" for reference in other functions
   localStorage.setItem("wordSearch", wordButton);
 
   //Saves the value of "buttonSwitch" to "localStorage".
@@ -61,7 +61,7 @@ function wordSearch() {
   $("#results-heading").empty()
   //Clears local storage so that it is only current rhymes that work
   localStorage.removeItem("rhymingWords");
-  //Settins for API call
+  //Settings for API call
   const settings = {
     "async": true,
     "crossDomain": true,
@@ -74,13 +74,13 @@ function wordSearch() {
     };
     //Runs API call
     $.ajax(settings).then(function (response) {
-      //Adds a heading for the search word. Creates and appends a <p> tag for the definition and synonyms
+      //Adds a heading element for the search word; and creates and appends a <p> tag for the definition and synonyms
       var resultsHeading = $("<h2>");
       var definitionText = $('<p>');
       resultsHeading.text("Results for " + '"' + userInput + '"' + ":");
       $("#results-heading").append(resultsHeading);
       definitionText.attr("class", "definitionText");
-      //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
+      //Checks to see if there is an array and if there is then it will run through the code, if not it will print a message and append it
       if (response.results.length != 0){
         //Generates a random number so that results aren't set
         var randomNumber = Math.floor(Math.random () * response.results.length);
@@ -114,7 +114,7 @@ function wordSearch() {
         $('#synonyms').append(synonymText);
       }
     });
-    //Runs the getRhymingWords function
+    //Runs the getRhymingWords function and the getExampleSentance function
     getRhymingWords(userInput);
     getExampleSentance(userInput);
 };
@@ -146,7 +146,7 @@ function getRhymingWords(userInput){
       //Variable to create an element for a user message
       var rhymeText = $('<p>');
       
-      //This variable contains and dummy value to be used when no rhymes are available. This is employed to prevent 
+      //This variable contains a dummy value to be used when no rhymes are available. This is employed to prevent 
       //errors and to run the appropriate conditionals when there are no rhymes for a search term on Words API.
       var newRhyme = {Rhyme: "noRhyme000"};
       console.log(newRhyme);
@@ -184,12 +184,12 @@ function getRhymingWords(userInput){
       window.localStorage.setItem('rhymingWords', JSON.stringify(rhymingWords));
        
     }}
-    //Sets up the apended text for the rhyming words
+    //Sets up the appended text for the rhyming words
     var rhymeText = $('<p>');
     rhymeText.attr("class", "rhymeText");
     //Creates an array to store rhymed words in it
     rhymeResultArray = [];
-    //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
+    //Checks to see if there is an array and if there is then it will run through the code, if not it will print a message and append it
     //Loops through the first 5 items in rhyming array and pushes it to new array
     if (response.rhymes.length != 0){
     for (var j = 0; j < 5; j++){
@@ -226,7 +226,7 @@ function getExampleSentance(userInput){
   $.ajax(settings).then(function(response){
     var exampleText = $('<p>');
     exampleText.attr("class", "exampleText");
-    //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
+    //Checks to see if there is an array and if there is then it will run through the code, if not it will print a message and append it
     if (response.examples.length != 0){
       //Gets the API response needed
       exampleTextString = response.examples[0];
