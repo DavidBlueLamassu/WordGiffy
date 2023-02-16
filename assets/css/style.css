@@ -1,8 +1,16 @@
+/*Main "background-color" for the webpage*/
+body {
+    background-color: rgb(204, 215, 224) !important;
+}
+
+/*Creates a flexbox for the primary components of the page: the search menu and the results display; these 
+appear side-by-side*/
 main {
     display: flex;
     flex-direction: row;
 }
 
+/*Formatting for Jumbotron*/
 .jumbotron {
     color: black;
     font-weight: bolder;
@@ -16,7 +24,8 @@ main {
     margin-top: 2px;
 }
 
-/*The image used as a background is a photograph of the temporary lending library used during alterations to the Newcastle-upon-Tyne
+/*The "#start-image" element is used as a default display prior to search. It is set to "display: none" once a search has begun.
+The "background-image" is a photograph of the temporary lending library used during alterations to the Newcastle-upon-Tyne
 Central Library made in 1949. This was downloaded from Flickr: https://www.flickr.com/photos/newcastlelibraries/4081723214 
 (site last visited 15 February 2023).*/
 #start-image {
@@ -26,22 +35,7 @@ Central Library made in 1949. This was downloaded from Flickr: https://www.flick
     height: 1000px;
 }
 
-.background-image {
-    height: 50px;
-}
-
-.lead {
-    background-color: rgba(102, 102, 119, 0.432);
-    text-align: center;
-    color: bisque;
-    font-weight: bolder;
-    /* margin-top: 35px; */
-}
-
-body {
-    background-color: rgb(204, 215, 224) !important;
-}
-
+/*Formatting for the search form*/
 .search-field {
     margin-right: 20px;
     padding: 20px;
@@ -52,19 +46,6 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.search-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-#definition {
-    background-position: center;
-    background-size: cover;
-    background-size: contain;
-}
-
 footer {
     color: black;
     background-color: rgba(102, 102, 119, 0.432);
@@ -73,43 +54,36 @@ footer {
     /* padding: 10px; */
 }
 
-h3 {
-    color: white;
-}
-
-h4 {
-    color: white;
-}
-
 #search-button {
     color: black;
 }
 
-#footnote {
-    color: white;
-}
-
+/*Centers the gif for the main search term*/
 #gif-image {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/*Centers the gif for the rhyming term*/
 #gif-rhyme {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/*Font color for the results headings*/
 .sectionHeading {
     color: white;
     text-align: center;
 }
 
+/*Padding for the two main results displays*/
 .container-fluid {
     padding-top: 10px;
 }
 
+/*Media queries to adjust the size of the Jumbotron font for medium and smaller screen sizes*/
 @media only screen and (max-width: 600px) {
     .jumbotron h1 {
         font-size: 20px;
