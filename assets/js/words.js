@@ -134,14 +134,11 @@ function getRhymingWords(userInput){
   };
   //Ajax call
   $.ajax(settings).then(function(response){
-    console.log(response);
     //Conditional code to check that rhymes have been found. If there are no rhymes and the relevant key or keys are 
     //absent the value of rhymeQuery will be undefined.
     var rhymeQuery = response.rhymes.all;
-    console.log("rhymeQuery: " + rhymeQuery);
     
     if (rhymeQuery === undefined) {
-      console.log(rhymeQuery);
       
       //Variable to create an element for a user message
       var rhymeText = $('<p>');
@@ -149,7 +146,6 @@ function getRhymingWords(userInput){
       //This variable contains a dummy value to be used when no rhymes are available. This is employed to prevent 
       //errors and to run the appropriate conditionals when there are no rhymes for a search term on Words API.
       var newRhyme = {Rhyme: "noRhyme000"};
-      console.log(newRhyme);
       
       //An array to be saved into "localStorage" containing the rhyme; this will later be used by the 
       //gifDisplay() function.
