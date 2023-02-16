@@ -77,7 +77,7 @@ function wordSearch() {
       //Adds a heading for the search word. Creates and appends a <p> tag for the definition and synonyms
       var resultsHeading = $("<h2>");
       var definitionText = $('<p>');
-      resultsHeading.text("Results for " + userInput + ":");
+      resultsHeading.text("Results for " + '"' + userInput + '"' + ":");
       $("#results-heading").append(resultsHeading);
       definitionText.attr("class", "definitionText");
       //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
@@ -161,7 +161,7 @@ function getRhymingWords(userInput){
 
       //A message sent to the user to indicate there are no rhymes
       rhymeText.attr("class", "rhymeText");
-      rhymeText.text("Sorry there are no rhymes for this word! No buttons can be made for this search term.");
+      rhymeText.text("Sorry there are no rhymes for this word! No buttons can be made for this search.");
       $('#rhymes').append(rhymeText); 
       
       //The function which searches for gifs of words and their rhymes is called.
