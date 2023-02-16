@@ -134,6 +134,41 @@ function getRhymingWords(userInput){
   };
   //Ajax call
   $.ajax(settings).then(function(response){
+    console.log(response);
+    //Conditional code to check that rhymes have been found. If there are no rhymes and the relevant key or keys are 
+    //absent the value of rhymeQuery will be undefined.
+    var rhymeQuery = response.rhymes.all;
+    console.log("rhymeQuery: " + rhymeQuery);
+    
+    if (rhymeQuery === undefined) {
+      console.log(rhymeQuery);
+      
+      //Variable to create an element for a user message
+      var rhymeText = $('<p>');
+      
+      //This variable contains and dummy value to be used when no rhymes are available. This is employed to prevent 
+      //errors and to run the appropriate conditionals when there are no rhymes for a search term on Words API.
+      var newRhyme = {Rhyme: "noRhyme000"};
+      console.log(newRhyme);
+      
+      //An array to be saved into "localStorage" containing the rhyme; this will later be used by the 
+      //gifDisplay() function.
+      var rhymingWords = [];
+      
+      //The array saved to "localStorage"
+      rhymingWords.push(newRhyme);
+      localStorage.setItem('rhymingWords', JSON.stringify(rhymingWords));
+
+      //A message sent to the user to indicate there are no rhymes
+      rhymeText.attr("class", "rhymeText");
+      rhymeText.text("Sorry there are no rhymes for this word! No buttons can be made for this search term.");
+      $('#rhymes').append(rhymeText); 
+      
+      //The function which searches for gifs of words and their rhymes is called.
+      gifDisplay();
+      return;
+    } else {
+    
     //Either gets the words from local storage or creates an array if this doesn't exist
     var rhymingWords = JSON.parse(window.localStorage.getItem('rhymingWords')) || [];
     //Loops through and creates an array which gets a random word that rhymes 10 times
@@ -148,7 +183,7 @@ function getRhymingWords(userInput){
       //Sets this in local storage
       window.localStorage.setItem('rhymingWords', JSON.stringify(rhymingWords));
        
-    }
+    }}
     //Sets up the apended text for the rhyming words
     var rhymeText = $('<p>');
     rhymeText.attr("class", "rhymeText");

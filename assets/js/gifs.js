@@ -16,7 +16,7 @@ function gifDisplay() {
   //the Words API search
   var localRhyme = localStorage.getItem("rhymingWords");
   var rhymeArray = JSON.parse(localRhyme);
-  
+  console.log(rhymeArray);
   //Accesses the search term retained in "localStorage" either from the search form or from a button click
   var gifSearch = localStorage.getItem("wordSearch");
   
@@ -29,19 +29,22 @@ function gifDisplay() {
   
   //These variables select a random rhyming word from the "rhymeArray" to be used as a search term.
   var rhymeRandom = Math.floor(Math.random() * rhymeArray.length);
+  console.log("rhymeRandom: " + rhymeRandom);
   var gifRhyme = rhymeArray[rhymeRandom].Rhyme;
   
   //URLs are constructed to search for gifs using the search term the user selected and a word that rhymes with it. 
   //The number of gifs to be acquired is limited to 5.
   var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=" + gifSearch + "&limit=5&offset=0&rating=g&lang=en";
   var queryRhymeURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=" + gifRhyme + "&limit=5&offset=0&rating=g&lang=en";
-    
+  
+  console.log("gifRhyme: " + gifRhyme);
   //This code pushes new search terms and rhymes into the "searchArray" and the "rhymingArray" and 
   //then saves the arrays into "localStorage". It is run with a conditional to prevent empty form clicks 
-  //begins stored in the arrays and to prevent search terms from button clicks being retained (thereby
+  //being stored in the arrays and to prevent search terms from button clicks being retained (thereby
   //duplicating buttons with terms from previous searches). The value of "buttonSwitch" is set to "off"
-  //whenever a search is begun by button click.
-  if (gifSearch !=="" && buttonSwitch !== "off") {
+  //whenever a search is begun by button click. It also prevents terms from being stored when Words API
+  //does not have a corresponding rhyme for the search word. This is indicated when "gifRhyme" === "noRhyme000".
+  if (gifSearch !=="" && buttonSwitch !== "off" && gifRhyme !== "noRhyme000") {
     searchArray.push(gifSearch);
     rhymingArray.push(gifRhyme);
     
@@ -108,19 +111,27 @@ function gifDisplay() {
           url: queryRhymeURL,
           method: "GET"
         }).then(function(response) {
-        
+          console.log(response);
           //Holds the URLs for up to 5 gifs.
           var gifData = response.data;
 
-          //If no gifs are available for this term, a message is printed to indicate this.
-          if (gifData.length === 0) {
+          //If no gifs are available for this term, or a rhyme was unavailable for search
+          //a message is printed to indicate this.
+          if (gifRhyme == "noRhyme000") {
+            var gifNo = $("<p>");
+            gifNo.text("Sorry. There are no rhymes matching the search term. No buttons can be made for this search.");
+            $("#gif-text-rhyme").empty();
+            $("#gif-text-rhyme").append(gifNo);
+            gifNo.css("color", "black");
+            return;
+          } else if (gifData.length === 0) {
             var gifNo = $("<p>");
             gifNo.text("Sorry. No gifs match that search term.");
             $("#gif-text-rhyme").text(gifRhyme);
             $("#gif-text-rhyme").append(gifNo);
             gifNo.css("color", "black");
             return;
-          }
+          } 
 
           //If gifs are avaiable one is selected at random and printed.
           var gifRandom = Math.floor(Math.random() * gifData.length);
