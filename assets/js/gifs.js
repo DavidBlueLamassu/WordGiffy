@@ -16,7 +16,7 @@ function gifDisplay() {
   //the Words API search
   var localRhyme = localStorage.getItem("rhymingWords");
   var rhymeArray = JSON.parse(localRhyme);
-  console.log(rhymeArray);
+  
   //Accesses the search term retained in "localStorage" either from the search form or from a button click
   var gifSearch = localStorage.getItem("wordSearch");
   
@@ -29,7 +29,6 @@ function gifDisplay() {
   
   //These variables select a random rhyming word from the "rhymeArray" to be used as a search term.
   var rhymeRandom = Math.floor(Math.random() * rhymeArray.length);
-  console.log("rhymeRandom: " + rhymeRandom);
   var gifRhyme = rhymeArray[rhymeRandom].Rhyme;
   
   //URLs are constructed to search for gifs using the search term the user selected and a word that rhymes with it. 
@@ -37,7 +36,6 @@ function gifDisplay() {
   var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=" + gifSearch + "&limit=5&offset=0&rating=g&lang=en";
   var queryRhymeURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPIKey + "&q=" + gifRhyme + "&limit=5&offset=0&rating=g&lang=en";
   
-  console.log("gifRhyme: " + gifRhyme);
   //This code pushes new search terms and rhymes into the "searchArray" and the "rhymingArray" and 
   //then saves the arrays into "localStorage". It is run with a conditional to prevent empty form clicks 
   //being stored in the arrays and to prevent search terms from button clicks being retained (thereby
@@ -56,7 +54,7 @@ function gifDisplay() {
     }
     
     //Search terms and rhymes are saved into "localStorage"; upon retrieval buttons corresponding to these
-    //words can be made using a "for" loop.
+    //words will be made using a "for" loop.
     localStorage.setItem("pastWordSearch", JSON.stringify(searchArray));
     localStorage.setItem("oldeRhyme", JSON.stringify(rhymingArray));
     
@@ -96,7 +94,7 @@ function gifDisplay() {
             return;
           }
 
-          //If gifs are avaiable one is selected at random and printed.
+          //If gifs are available, one is selected at random and printed.
           var gifRandom = Math.floor(Math.random() * gifData.length);
           var gifImage = response.data[gifRandom].images.downsized_large.url;
           var gifDisplay = $("<img>");
@@ -111,7 +109,7 @@ function gifDisplay() {
           url: queryRhymeURL,
           method: "GET"
         }).then(function(response) {
-          console.log(response);
+          
           //Holds the URLs for up to 5 gifs.
           var gifData = response.data;
 
@@ -133,7 +131,7 @@ function gifDisplay() {
             return;
           } 
 
-          //If gifs are avaiable one is selected at random and printed.
+          //If gifs are available, one is selected at random and printed.
           var gifRandom = Math.floor(Math.random() * gifData.length);
           var gifImage = response.data[gifRandom].images.downsized_large.url;
           var gifDisplay = $("<img>");
