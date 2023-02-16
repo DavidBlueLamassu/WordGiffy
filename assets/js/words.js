@@ -58,6 +58,7 @@ function wordSearch() {
   $('#rhymes').children().remove();
   $('#exampleSentance').children().remove();
   $('#search-input').val("");
+  $("#results-heading").empty()
   //Clears local storage so that it is only current rhymes that work
   localStorage.removeItem("rhymingWords");
   //Settins for API call
@@ -73,8 +74,11 @@ function wordSearch() {
     };
     //Runs API call
     $.ajax(settings).then(function (response) {
-      //Creates and appends a <p> tag for the definition and synonyms
+      //Adds a heading for the search word. Creates and appends a <p> tag for the definition and synonyms
+      var resultsHeading = $("<h2>");
       var definitionText = $('<p>');
+      resultsHeading.text("Results for " + userInput + ":");
+      $("#results-heading").append(resultsHeading);
       definitionText.attr("class", "definitionText");
       //Checks to see if there is a array and if there is then it will run through the code, if not it will print a message and append it
       if (response.results.length != 0){
