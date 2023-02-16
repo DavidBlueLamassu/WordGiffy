@@ -15,7 +15,7 @@ This webpage was made by the following contributors:
 David Adams, JavaScript (Giphy API, Past Search Buttons/localStorage); https://github.com/DavidBlueLamassu  
 Katy Chillingworth, CSS; https://github.com/katychillingworth  
 George Ryder, JavaScript (Words API, Form Buttons/Modal); https://github.com/NotGeorgeHere  
-Florante Singcak, HTML/Bootstrap; https://github.com/FlorSing  
+Florante Singcak, HTML/Bootstrap/Modal; https://github.com/FlorSing  
 
 This page used Bootstrap v4.3 components from https://getbootstrap.com/  
 It also drew upon resources from two Server-side APIs :  
