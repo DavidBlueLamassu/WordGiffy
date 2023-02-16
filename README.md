@@ -27,4 +27,4 @@ N/A
 
 ## https://davidbluelamassu.github.io/WordGiffy/
 
-![Screenshot of WordGiffy](../images/wordgiffy-screenshot.png)
+![Screenshot of WordGiffy](./assets/images/wordgiffy-screenshot.png)
