@@ -8,6 +8,7 @@ $("#start-image").css("display", "initial");
 
 makeButtons();
 getUserInput();
+getNavInput()
 clearScreen();
 
 //Event listener to activate buttons relating to previous searches
@@ -45,9 +46,21 @@ function getUserInput(){
     }
   })}
 
+function getNavInput(){
+  //Runs when user clicks search button and gets the value from the search bar
+  $("#small-button").on("click", function(event){
+    event.preventDefault();
+    var userInput = $("#input-small").val();
+    console.log(userInput);
+    if (userInput !== ""){
+      localStorage.setItem("wordSearch", userInput);
+      wordSearch();
+    }
+  })}
+
 function wordSearch() {
   var userInput = localStorage.getItem("wordSearch")
-  
+  console.log(userInput);
   //Search results are now displayed and the default "background-image" is removed.
   $("#results").css("display", "initial");
   $("#start-image").css("display", "none");
@@ -58,6 +71,7 @@ function wordSearch() {
   $('#rhymes').children().remove();
   $('#exampleSentance').children().remove();
   $('#search-input').val("");
+  $('#small-input').val("");
   $("#results-heading").empty()
   //Clears local storage so that it is only current rhymes that work
   localStorage.removeItem("rhymingWords");
@@ -249,6 +263,7 @@ function clearScreen(){
   $('#clearScreen').on("click", function(event){
     //Resets the search input field
     $("#search-input").val("");
+    $('#small-input').val("");
 
     //Removes all search boxes and buttons.
     $('#definition').children().remove();

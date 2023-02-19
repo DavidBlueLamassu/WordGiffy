@@ -37,13 +37,20 @@
 </div>
 
 <!--Navbar (Bootstrap component: '.form-inline' from Forms, Navbar: https://getbootstrap.com/docs/4.3/components/navbar/)-->
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light" id="small-menu">
     <form class="form-inline">
-        <img src="https://img.freepik.com/premium-vector/man-reading-book-logo-template-design_293731-129.jpg?w=2000" id="image-small" class="card-img-top" alt="Drawing of a young man reading a book.">
-        <input id="input-small" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+        <div>
+            <div id="image-input">
+                <img src="https://img.freepik.com/premium-vector/man-reading-book-logo-template-design_293731-129.jpg?w=2000" id="image-small" class="card-img-top" alt="Drawing of a young man reading a book.">
+                <input id="input-small" class="form-control mr-sm-2" type="search" placeholder="Enter word here" aria-label="Search">
+            </div>
+            <div id="nav-buttons">
+                <button class="btn my-2 my-sm-0" type="submit" id="small-button">Search</button>
+                <button type="button" class="btn clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+            </div>
+        </div>
     </form>
+    
 </nav>
 
 <main>
@@ -62,7 +69,7 @@
                         <div class="input-group">
                             <input class="form-input word-search" type="text" id="search-input" placeholder="Enter word here" />
                             <button type="submit" class="btn search-button" id="search-button">Search</button>
-                            <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+                            <button type="button" class="btn clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
                         </div>
                     </div>
                 </form>

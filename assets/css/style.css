@@ -24,23 +24,45 @@ main {
     margin-top: 2px;
 }
 
-nav {
+#small-menu {
     display: none !important;
     padding: 0 !important;
 }
 
-nav button {
+#small-menu form {
+    height: 200px;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* .form-inline button {
+    margin-top: 10px;
+} */
+
+#nav-buttons {
+    margin-left: 45px;
+}
+
+#small-menu button {
     border: none !important;
     color: black !important;
+    margin: 4px !important;
 }
 
 #image-small {
     width: 50px;
 }
 
-#input-small{
+#input-small {
     width: 200px;
+    margin-top: 6px;
 }
+
+#image-input {
+    display: flex;
+    flex-direction: row;
+}
+
 /* nav img {
     width: 20px;
 } */
@@ -114,13 +136,12 @@ footer {
     #menu {
         display: none !important;
     }
-    nav {
+    #small-menu {
         display: initial !important;
     }
     #history {
         display: none !important;
     }
-
 }
 
 @media only screen and (max-width: 400px) {
