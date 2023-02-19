@@ -24,6 +24,27 @@ main {
     margin-top: 2px;
 }
 
+nav {
+    display: none !important;
+    padding: 0 !important;
+}
+
+nav button {
+    border: none !important;
+    color: black !important;
+}
+
+#image-small {
+    width: 50px;
+}
+
+#input-small{
+    width: 200px;
+}
+/* nav img {
+    width: 20px;
+} */
+
 /*The "#start-image" element is used as a default display prior to search. It is set to "display: none" once a search has begun.
 The "background-image" is a photograph of the temporary lending library used during alterations to the Newcastle-upon-Tyne
 Central Library made in 1949. This was downloaded from Flickr: https://www.flickr.com/photos/newcastlelibraries/4081723214 
@@ -83,13 +104,23 @@ footer {
 }
 
 /*Media queries to adjust the size of the Jumbotron font for medium and smaller screen sizes*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 925px) {
     .jumbotron h1 {
         font-size: 20px;
     }
     .jumbotron p {
         font-size: 10px;
     }
+    #menu {
+        display: none !important;
+    }
+    nav {
+        display: initial !important;
+    }
+    #history {
+        display: none !important;
+    }
+
 }
 
 @media only screen and (max-width: 400px) {

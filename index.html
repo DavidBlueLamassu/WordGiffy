@@ -36,25 +36,38 @@
     <p>For busy writers who need to know more about the words they use....</p>
 </div>
 
+<!--Navbar (Bootstrap component: '.form-inline' from Forms, Navbar: https://getbootstrap.com/docs/4.3/components/navbar/)-->
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <img src="https://img.freepik.com/premium-vector/man-reading-book-logo-template-design_293731-129.jpg?w=2000" id="image-small" class="card-img-top" alt="Drawing of a young man reading a book.">
+        <input id="input-small" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+    </form>
+</nav>
+
 <main>
-<!--*** https://getbootstrap.com/docs/4.1/components/card/ -->
+
 <aside id="search-menu">
-    <div class="card" style="width: 18rem;">
-    <img src="https://img.freepik.com/premium-vector/man-reading-book-logo-template-design_293731-129.jpg?w=2000" class="card-img-top" alt="Drawing of a young man reading a book.">
-    <div class="card-body">
-        <p class="card-text">Enter a word below to learn more about it:</p>
-        <div class="search-field">
-            <form id="search-form" class="form">
-                <div class="form-inline">
-                    <div class="input-group">
-                        <input class="form-input word-search" type="text" id="search-input" placeholder="Enter word here" />
-                        <button type="submit" class="btn search-button" id="search-button">Search</button>
-                        <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+    
+    
+    <!--*** https://getbootstrap.com/docs/4.1/components/card/ -->
+    <div id="menu" class="card" style="width: 18rem;">
+        <img src="https://img.freepik.com/premium-vector/man-reading-book-logo-template-design_293731-129.jpg?w=2000" class="card-img-top" alt="Drawing of a young man reading a book.">
+        <div class="card-body">
+            <p class="card-text">Enter a word below to learn more about it:</p>
+            <div class="search-field">
+                <form id="search-form" class="form">
+                    <div class="form-inline">
+                        <div class="input-group">
+                            <input class="form-input word-search" type="text" id="search-input" placeholder="Enter word here" />
+                            <button type="submit" class="btn search-button" id="search-button">Search</button>
+                            <button type="button" class="btn clear-button" id="clear-button" data-toggle="modal" data-target="#exampleModal">Clear search</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
     <div id="history"></div>
 
