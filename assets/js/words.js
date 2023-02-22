@@ -71,7 +71,7 @@ function wordSearch() {
   $('#rhymes').children().remove();
   $('#exampleSentance').children().remove();
   $('#search-input').val("");
-  $('#small-input').val("");
+  $('#input-small').val("");
   $("#results-heading").empty()
   //Clears local storage so that it is only current rhymes that work
   localStorage.removeItem("rhymingWords");
@@ -263,7 +263,7 @@ function clearScreen(){
   $('#clearScreen').on("click", function(event){
     //Resets the search input field
     $("#search-input").val("");
-    $('#small-input').val("");
+    $('#input-small').val("");
 
     //Removes all search boxes and buttons.
     $('#definition').children().remove();
@@ -299,6 +299,7 @@ function makeButtons() {
   
   //Removes previously printed buttons to prevent duplication.
   $("#history").empty();
+  $("#history-small").empty();
   
   //Conditionals that update the values of "searchArray" and "rhymingArray" once these 
   //have been retained in "localStorage".
@@ -316,44 +317,59 @@ function makeButtons() {
     //Variables to creat new elements
     var buttonMakerSearch = $("<div>");
     var buttonMakerRhyme = $("<div>");
+    var rhymeButtonSmall = $("<div>");
+    var searchButtonSmall = $("<div>");
     var article = $("<article>");
+    var articleSmall = $("<article>");
     var textSearch = $("<p>");
     var textRhyme = $("<p>");
+    var textSearchSmall = $("<p>");
+    var textRhymeSmall = $("<p>");
     
     //Text content for the buttons; one contains an old search term, the second contains a 
     //word which rhymes with that term (obtained from Words API).
     textSearch.text(searchArray[i]);
     textRhyme.text(rhymingArray[i]);
+    textSearchSmall.text(searchArray[i]);
+    textRhymeSmall.text(rhymingArray[i]);
 
     //The buttons are indexed with the terms used for their text content. This indexing will
     //be used to begin a search through Words API once the button is clicked.
     buttonMakerSearch.attr("word-name", searchArray[i]);
     buttonMakerRhyme.attr("word-name", rhymingArray[i]);
-
+    rhymeButtonSmall.attr("word-name", rhymingArray[i]);
+    searchButtonSmall.attr("word-name", searchArray[i]);
     //The button class will be used as a target for the buttons' "eventListener".
     buttonMakerSearch.addClass("word-button");
     buttonMakerRhyme.addClass("word-button");
+    rhymeButtonSmall.addClass("word-button");
+    searchButtonSmall.addClass("word-button");
 
     //Formatting for the buttons, text and containers (each pair of buttons is contained within an article for ease of styling).
-    buttonMakerSearch.css({"background-color": "rgba(19, 19, 76, 0.432)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
-    "height": "80px", "width": "138px", "border-radius": "5px", "margin-left": "5px", "cursor": "pointer", "display": "flex",
-    "align-items": "center", "justify-content": "center"})
-    buttonMakerRhyme.css({"background-color": "rgba(102, 102, 119, 0.432)", "border": "none", "margin-top": "5px", "margin-bottom": "5px", 
-    "height": "80px", "width": "138px", "border-radius": "5px", "margin-left": "5px", "cursor": "pointer", "display": "flex",
-    "align-items": "center", "justify-content": "center"})
+    buttonMakerSearch.css({"background-color": "rgba(19, 19, 76, 0.432)"})
+    buttonMakerRhyme.css({"background-color": "rgba(102, 102, 119, 0.432)"})
     $("#history").css({"display": "flex", "flex-direction": "column"})
     textSearch.css({"color": "white", "margin": "0", "text-align": "center"});
     textRhyme.css({"color": "white", "margin": "0", "text-align": "center"});
     article.css({"display": "flex", "flex-direction": "row"});
-    
+    rhymeButtonSmall.css({"background-color": "rgba(102, 102, 119, 0.432)"});
+    searchButtonSmall.css({"background-color": "rgba(19, 19, 76, 0.432)"});
+    textRhymeSmall.css({"color": "white", "margin": "0", "text-align": "center"});
+    textSearchSmall.css({"color": "white", "margin": "0", "text-align": "center"});
+    articleSmall.css({"display": "flex", "flex-direction": "row"});
     //Appends search button text to the search buttons and the search buttons to an article.
     article.append(buttonMakerSearch);
     article.append(buttonMakerRhyme);
     buttonMakerSearch.append(textSearch);
     buttonMakerRhyme.append(textRhyme);
+    articleSmall.append(searchButtonSmall);
+    articleSmall.append(rhymeButtonSmall);
+    searchButtonSmall.append(textSearchSmall);
+    rhymeButtonSmall.append(textRhymeSmall);
     
     //Prepends an article to the "#history" element, so that the most recent search terms appear first.
     $("#history").prepend(article);
+    $("#history-small").prepend(articleSmall);
 
   }
   
@@ -365,21 +381,32 @@ if (searchArray.length > 0) {
   var headerSearch = $("<p>");
   var headerRhyme = $ ("<p>");
   var headerArticle = $("<article>");
+  var headerSearchSmall = $("<p>");
+  var headerRhymeSmall = $ ("<p>");
+  var headerArticleSmall = $("<article>");
   
   //Header text.
   headerSearch.text("Old Searches:");
   headerRhyme.text("Old Rhymes:")
+  headerSearchSmall.text("Old Searches:");
+  headerRhymeSmall.text("Old Rhymes:")
 
   //Header elements containing text are placed inside an "article" for ease of formatting.
   headerArticle.append(headerSearch);
   headerArticle.append(headerRhyme);
+  headerArticleSmall.append(headerSearchSmall);
+  headerArticleSmall.append(headerRhymeSmall);
 
   //The "article" is prepended to the "#history" element so that it appears above the search buttons.
   $("#history").prepend(headerArticle);
+  $("#history-small").prepend(headerArticleSmall);
 
   //Formatting of the button header elements.
   headerArticle.css({"display": "flex", "flex-direction": "row"});
   headerSearch.css({"margin-left": "30px", "margin-bottom": "3px", "margin-top": "10px"});
-  headerRhyme.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"})
+  headerRhyme.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"});
+  headerArticleSmall.css({"display": "flex", "flex-direction": "row"});
+  headerSearchSmall.css({"margin-left": "30px", "margin-bottom": "3px", "margin-top": "10px"});
+  headerRhymeSmall.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"});
   }
 }

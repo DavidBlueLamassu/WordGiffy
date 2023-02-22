@@ -30,9 +30,10 @@ main {
 }
 
 #small-menu form {
-    height: 200px;
+    height: 275px;
     display: flex;
     align-items: flex-start;
+    justify-content: center;
 }
 
 /* .form-inline button {
@@ -62,6 +63,34 @@ main {
     display: flex;
     flex-direction: row;
 }
+
+.word-button {
+    border: none;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+    height: 80px; 
+    width: 138px; 
+    border-radius: 5px; 
+    margin-left: 5px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+/* 
+#history-small .word-button {
+    border: none;
+    margin-top: 0px; 
+    margin-bottom: 5px; 
+    height: 20px; 
+    width: 138px; 
+    border-radius: 5px; 
+    margin-left: 5px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+} */
 
 /* nav img {
     width: 20px;
@@ -141,6 +170,19 @@ footer {
     }
     #history {
         display: none !important;
+    }
+    .word-button {
+        border: none;
+        margin-top: 0px; 
+        margin-bottom: 5px; 
+        height: 20px; 
+        width: 138px; 
+        border-radius: 5px; 
+        margin-left: 5px; 
+        cursor: pointer; 
+        display: flex;
+        align-items: center; 
+        justify-content: center;
     }
 }
 
