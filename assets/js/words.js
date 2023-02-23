@@ -406,7 +406,7 @@ if (searchArray.length > 0) {
   headerSearch.css({"margin-left": "30px", "margin-bottom": "3px", "margin-top": "10px"});
   headerRhyme.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"});
   headerArticleSmall.css({"display": "flex", "flex-direction": "row"});
-  headerSearchSmall.css({"margin-left": "30px", "margin-bottom": "3px", "margin-top": "10px"});
+  headerSearchSmall.css({"margin-left": "10px", "margin-bottom": "3px", "margin-top": "10px"});
   headerRhymeSmall.css({"margin-left": "45px", "margin-bottom": "3px", "margin-top": "10px"});
   }
 }

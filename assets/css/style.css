@@ -129,6 +129,10 @@ footer {
     color: black;
 }
 
+.gif-display {
+    width: 400px;
+}
+
 /*Centers the gif for the main search term*/
 #gif-image {
     display: flex;
@@ -143,7 +147,7 @@ footer {
     align-items: center;
 }
 
-/*Font color for the results headings*/
+/*Font color for the results headings +++*/
 .sectionHeading {
     color: white;
     text-align: center;
@@ -176,13 +180,16 @@ footer {
         margin-top: 0px; 
         margin-bottom: 5px; 
         height: 20px; 
-        width: 138px; 
+        width: 115px; 
         border-radius: 5px; 
         margin-left: 5px; 
         cursor: pointer; 
         display: flex;
         align-items: center; 
         justify-content: center;
+    }
+    .gif-display{
+        width: 150px;
     }
 }
 

@@ -99,7 +99,8 @@ function gifDisplay() {
           var gifImage = response.data[gifRandom].images.downsized_large.url;
           var gifDisplay = $("<img>");
           gifDisplay.attr("src", gifImage);
-          gifDisplay.css("height", "300px");
+          gifDisplay.addClass("gif-display");
+          // gifDisplay.css("height", "300px");
           $("#gif-image").append(gifDisplay);
           $("#gif-text").text(gifSearch)
     })
@@ -136,7 +137,8 @@ function gifDisplay() {
           var gifImage = response.data[gifRandom].images.downsized_large.url;
           var gifDisplay = $("<img>");
           gifDisplay.attr("src", gifImage);
-          gifDisplay.css("height", "300px");
+          gifDisplay.addClass("gif-display");
+          // gifDisplay.css("height", "300px");
           $("#gif-rhyme").append(gifDisplay);
           $("#gif-text-rhyme").text(gifRhyme);
     })
