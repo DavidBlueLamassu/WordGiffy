@@ -24,6 +24,78 @@ main {
     margin-top: 2px;
 }
 
+#small-menu {
+    display: none !important;
+    padding: 0 !important;
+}
+
+#small-menu form {
+    height: 275px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* .form-inline button {
+    margin-top: 10px;
+} */
+
+#nav-buttons {
+    margin-left: 45px;
+}
+
+#small-menu button {
+    border: none !important;
+    color: black !important;
+    margin: 4px !important;
+}
+
+#image-small {
+    width: 50px;
+}
+
+#input-small {
+    width: 200px;
+    margin-top: 6px;
+}
+
+#image-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.word-button {
+    border: none;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+    height: 80px; 
+    width: 138px; 
+    border-radius: 5px; 
+    margin-left: 5px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+/* 
+#history-small .word-button {
+    border: none;
+    margin-top: 0px; 
+    margin-bottom: 5px; 
+    height: 20px; 
+    width: 138px; 
+    border-radius: 5px; 
+    margin-left: 5px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+} */
+
+/* nav img {
+    width: 20px;
+} */
+
 /*The "#start-image" element is used as a default display prior to search. It is set to "display: none" once a search has begun.
 The "background-image" is a photograph of the temporary lending library used during alterations to the Newcastle-upon-Tyne
 Central Library made in 1949. This was downloaded from Flickr: https://www.flickr.com/photos/newcastlelibraries/4081723214 
@@ -57,6 +129,10 @@ footer {
     color: black;
 }
 
+.gif-display {
+    width: 400px;
+}
+
 /*Centers the gif for the main search term*/
 #gif-image {
     display: flex;
@@ -71,7 +147,7 @@ footer {
     align-items: center;
 }
 
-/*Font color for the results headings*/
+/*Font color for the results headings +++*/
 .sectionHeading {
     color: white;
     text-align: center;
@@ -83,12 +159,37 @@ footer {
 }
 
 /*Media queries to adjust the size of the Jumbotron font for medium and smaller screen sizes*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 925px) {
     .jumbotron h1 {
         font-size: 20px;
     }
     .jumbotron p {
         font-size: 10px;
+    }
+    #menu {
+        display: none !important;
+    }
+    #small-menu {
+        display: initial !important;
+    }
+    #history {
+        display: none !important;
+    }
+    .word-button {
+        border: none;
+        margin-top: 0px; 
+        margin-bottom: 5px; 
+        height: 20px; 
+        width: 115px; 
+        border-radius: 5px; 
+        margin-left: 5px; 
+        cursor: pointer; 
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+    }
+    .gif-display{
+        width: 150px;
     }
 }
 
